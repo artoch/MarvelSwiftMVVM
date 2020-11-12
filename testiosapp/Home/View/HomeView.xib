@@ -10,8 +10,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeView" customModule="testiosapp" customModuleProvider="target">
             <connections>
+                <outlet property="btnReload" destination="j5G-ci-pRB" id="5Cm-cB-WKN"/>
                 <outlet property="homeProgress" destination="DOe-hj-V2c" id="5AM-ep-p4A"/>
                 <outlet property="homeTable" destination="NGz-iW-wtf" id="t2a-yv-Tne"/>
+                <outlet property="labelError" destination="Lau-Ea-Epz" id="tYl-tv-qNa"/>
                 <outlet property="view" destination="iN0-l3-epB" id="NJp-x1-Net"/>
             </connections>
         </placeholder>
@@ -20,7 +22,7 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="NGz-iW-wtf">
+                <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="NGz-iW-wtf">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </tableView>
@@ -31,13 +33,32 @@
                         <constraint firstAttribute="width" constant="60" id="oFs-5W-HEy"/>
                     </constraints>
                 </activityIndicatorView>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j5G-ci-pRB">
+                    <rect key="frame" x="147" y="469" width="120" height="30"/>
+                    <state key="normal" title="Intentar de nuevo"/>
+                    <connections>
+                        <action selector="reloadButton:" destination="-1" eventType="touchUpInside" id="Kfr-u7-Ti2"/>
+                    </connections>
+                </button>
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="error de conexión" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lau-Ea-Epz">
+                    <rect key="frame" x="118" y="366" width="179" height="27"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Lau-Ea-Epz" secondAttribute="trailing" constant="117" id="Cfp-eN-EbJ"/>
                 <constraint firstItem="NGz-iW-wtf" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="Cqg-md-7Qd"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="j5G-ci-pRB" secondAttribute="trailing" constant="147" id="JAT-HV-FZC"/>
                 <constraint firstItem="NGz-iW-wtf" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="OtX-a8-Vva"/>
                 <constraint firstItem="DOe-hj-V2c" firstAttribute="centerX" secondItem="NGz-iW-wtf" secondAttribute="centerX" id="Q87-rG-pzG"/>
+                <constraint firstItem="Lau-Ea-Epz" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="322" id="aVg-UX-ABN"/>
+                <constraint firstItem="j5G-ci-pRB" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="147" id="abS-0c-FX3"/>
+                <constraint firstItem="Lau-Ea-Epz" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="118" id="bgs-Ls-Tif"/>
+                <constraint firstItem="j5G-ci-pRB" firstAttribute="top" secondItem="Lau-Ea-Epz" secondAttribute="bottom" constant="76" id="d6l-HV-Ka7"/>
                 <constraint firstItem="NGz-iW-wtf" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="gIm-X5-AaX"/>
                 <constraint firstItem="NGz-iW-wtf" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="jct-eO-DLE"/>
                 <constraint firstItem="DOe-hj-V2c" firstAttribute="centerY" secondItem="NGz-iW-wtf" secondAttribute="centerY" id="oKx-0i-w6g"/>

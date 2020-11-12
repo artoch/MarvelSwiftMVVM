@@ -13,6 +13,9 @@ class HomeView: UIViewController {
     
     @IBOutlet weak var homeTable: UITableView!
     @IBOutlet weak var homeProgress: UIActivityIndicatorView!
+    @IBOutlet weak var labelError: UILabel!
+    @IBOutlet weak var btnReload: UIButton!
+    
     private var disposeBag = DisposeBag()
     private var viewModel = HomeViewModel()
     private var router = HomeRouter()
@@ -34,6 +37,18 @@ class HomeView: UIViewController {
         getData()
     }
     
+    
+    @IBAction func reloadButton(_ sender: Any) {
+        getData()
+        btnReload.isHidden = true
+        labelError.isHidden = true
+        self.homeProgress.startAnimating()
+        self.homeProgress.isHidden = false
+        homeTable.isHidden = true
+        
+    }
+    
+    
     private func configureTableView(){
         //configura las dimensiones automaticamente
         homeTable.delegate = self
@@ -52,7 +67,10 @@ class HomeView: UIViewController {
                 self.characters = characters
                 self.reloadTableView()
             }, onError: { error in
-                print(error.localizedDescription)
+               // print(error.localizedDescription)
+                self.homeProgress.isHidden = true
+                self.btnReload.isHidden  = false
+                self.labelError.isHidden = false
             }, onCompleted: {
             })//Agregar un disposeBag = DisposeBag()
             .disposed(by: disposeBag)
@@ -62,6 +80,7 @@ class HomeView: UIViewController {
     //Se crea un estado para actualizar la vista en el mainthread
     private func reloadTableView(){
         DispatchQueue.main.async {
+            self.homeTable.isHidden = false
             self.homeProgress.stopAnimating()
             self.homeProgress.isHidden = true
             self.homeTable.reloadData()

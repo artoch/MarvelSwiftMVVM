@@ -34,6 +34,8 @@ class ManagerConnection {
                          observer.onError(error)
                     }
                 }else{
+                    let errorTemp = NSError(domain:"", code: data.response?.statusCode ?? 300, userInfo:nil)
+                    observer.onError(errorTemp)
                     print("Error!")
                 }
                 observer.onCompleted()
@@ -61,7 +63,8 @@ class ManagerConnection {
                          observer.onError(error)
                     }
                 }else{
-                    print("Error!")
+                    let errorTemp = NSError(domain:"", code: data.response?.statusCode ?? 300, userInfo:nil)
+                    observer.onError(errorTemp)
                 }
                 observer.onCompleted()
             }

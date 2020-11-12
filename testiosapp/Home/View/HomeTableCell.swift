@@ -25,7 +25,11 @@ class HomeTableCell: UITableViewCell {
     }
     
     func setupCell(_ character:Character){
-        labelDescription.text = character.description
+        if character.description.isEmpty{
+            self.labelDescription.text = "Sin descripción"
+        }else{
+            self.labelDescription.text = character.description
+        }
         labelName.text = character.name
         ivTitle.imageFromServerURL(url: "\(character.thumbnail.path)/portrait_xlarge.\(character.thumbnail.ext)", placeHolderImage: UIImage(named: "genericcomic")!)
     }

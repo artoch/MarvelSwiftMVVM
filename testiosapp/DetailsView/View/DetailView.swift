@@ -14,6 +14,10 @@ class DetailView: UIViewController{
     @IBOutlet weak var labelName: UILabel!
     @IBOutlet weak var labelDescription: UILabel!
     @IBOutlet weak var ivTitle: UIImageView!
+    @IBOutlet weak var svMyView: UIStackView!
+    @IBOutlet weak var detailProgress: UIActivityIndicatorView!
+    @IBOutlet weak var labelError: UILabel!
+    @IBOutlet weak var btnError: UIButton!
     
     
     private var disposeBag = DisposeBag()
@@ -29,8 +33,15 @@ class DetailView: UIViewController{
     
     private func showCharacterData(character:Character){
         DispatchQueue.main.async {
+            self.detailProgress.stopAnimating()
+            self.detailProgress.isHidden = true
+            self.svMyView.isHidden = false
             self.labelTitle.text = character.name
-            self.labelDescription.text = character.description
+            if character.description.isEmpty{
+                self.labelDescription.text = "Sin descripción"
+            }else{
+                self.labelDescription.text = character.description
+            }
             self.labelName.text = character.name
             self.ivTitle.imageFromServerURL(url: "\(character.thumbnail.path)/portrait_xlarge.\(character.thumbnail.ext)", placeHolderImage: UIImage(named: "genericcomic")!)
         }
@@ -44,12 +55,24 @@ class DetailView: UIViewController{
                 self.showCharacterData(character: character)
             },
             onError: { error in
-                print(error.localizedDescription)
+                self.detailProgress.stopAnimating()
+                self.detailProgress.isHidden = true
+                self.btnError.isHidden = false
+                self.labelError.isHidden = false
             },
             onCompleted: {
                 
             })
             .disposed(by: disposeBag)
         //dar por completado la secuencia de RxSwift
+    }
+    
+    
+    @IBAction func reloadData(_ sender: Any) {
+        getData()
+        detailProgress.isHidden = false
+        detailProgress.startAnimating()
+        btnError.isHidden = true
+        labelError.isHidden = true
     }
 }
