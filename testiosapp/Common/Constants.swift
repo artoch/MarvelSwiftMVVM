@@ -9,8 +9,8 @@ import Foundation
 import CryptoSwift
 
 struct Constants {
-    static let PUBLIC_API_KEY = "894e2634a4b74d2fec6c66bca4559b6a"
-    static let PRIVATE_API_KEY = "90c9cf887f8c33349135716887f6d49879450cfe"
+    static let PUBLIC_API_KEY = ""
+    static let PRIVATE_API_KEY = ""
     static let TIMESTAMP = "\(Date().timeIntervalSince1970)"
     static let HASH = (TIMESTAMP + PRIVATE_API_KEY + PUBLIC_API_KEY).md5()
     
